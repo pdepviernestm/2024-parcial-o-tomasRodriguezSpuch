@@ -41,6 +41,8 @@ class Emociones{
     self.liberarse(evento)
     }
 
+  method eventosVividos() = eventosVividos
+
   method cambiarIntensidadElevada(intensidadNueva){intensidadElevada = intensidadNueva}
 
   method intensidadActualMayorA(cantidad) = intensidadActual > cantidad
@@ -98,7 +100,7 @@ class Tristeza inherits Emociones{
 
 class Desagrado inherits Emociones{
 
-  override method puedeLiberarse() = super() && eventosVividos > intensidadActual
+  override method puedeLiberarse() = (eventosVividos > intensidadActual) && super()
 
   override method liberarse(evento){
     if(self.puedeLiberarse()){
