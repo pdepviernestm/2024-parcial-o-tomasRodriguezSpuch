@@ -60,4 +60,32 @@ describe "Test grupo de personas" {
     
   }
 
+  test "Tristeza no puede liberarse" {
+    const furia = new Furia(palabrotas = ["riverTeFuisteALaB","rojoBoton"], intensidadActual = 100, eventosVividos = 0)
+    const alegria = new Alegria(intensidadActual = 80,eventosVividos = 1)
+    const tristeza = new Tristeza(intensidadActual = 40,eventosVividos = 0)
+    const desagrado = new Desagrado(intensidadActual = 60,eventosVividos = 0)
+    const temor = new Temor(intensidadActual = 10,eventosVividos = 0)
+    const ansiedad = new Ansiedad(intensidadActual = 10, horasPensandoFuturo = 20,eventosVividos = 0)
+    
+    const persona1 = new Persona(edad = 10)
+    const persona2 = new Persona(edad = 18)
+    const persona3 = new Persona(edad = 20)
+
+    persona1.sentirNuevaEmocion(furia)
+    persona1.sentirNuevaEmocion(alegria)
+
+    persona2.sentirNuevaEmocion(desagrado)
+    persona2.sentirNuevaEmocion(tristeza)
+
+    persona2.sentirNuevaEmocion(ansiedad)
+    persona2.sentirNuevaEmocion(temor)
+
+    const grupo = [persona1, persona2, persona3]
+
+    grupo.forEach({persona => persona.vivirUnEvento(90, "Perdio Boca")})
+
+    assert.notThat(tristeza.puedeLiberarse())
+    
+  }
 }
